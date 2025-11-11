@@ -27,6 +27,8 @@ const Payment = () => {
   const [txSignature, setTxSignature] = useState<string>("");
 
   const handlePayAndGetMessage = async () => {
+    console.log("RECIPIENT_WALLET", process.env.NEXT_PUBLIC_RECIPIENT_WALLET)
+    console.log("USDC_MINT_DEVNET", process.env.NEXT_PUBLIC_USDC_MINT_DEVNET)
     if (!publicKey || !signTransaction) {
       setError("Please connect your wallet first");
       return;
@@ -49,6 +51,10 @@ const Payment = () => {
         RECIPIENT_WALLET
       );
 
+      console.log("recipientATA", recipientATA)
+      console.log("USDC_MINT_DEVNET", USDC_MINT_DEVNET)
+      console.log("RECIPIENT_WALLET", RECIPIENT_WALLET)
+
       // Check if sender has USDC
       try {
         const senderTokenAccount = await getAccount(connection, senderATA);
@@ -68,6 +74,8 @@ const Payment = () => {
         publicKey,
         PAYMENT_AMOUNT
       );
+
+      console.log("transferInstruction", transferInstruction)
 
       // Create and send transaction
       const { blockhash, lastValidBlockHeight } =
@@ -135,7 +143,7 @@ const Payment = () => {
       <button
         onClick={handlePayAndGetMessage}
         disabled={!connected || loading}
-        className="w-full py-2 sm:py-3 text-white text-center relative transition-all duration-300 
+        className="w-full cursor-pointer py-2 sm:py-3 text-white text-center relative transition-all duration-300 
                hover:scale-[1.02] hover:shadow-[0_0_20px_rgba(198,166,103,0.65)]"
         style={{
           backgroundImage: "url('/images/stake-btn.svg')",
