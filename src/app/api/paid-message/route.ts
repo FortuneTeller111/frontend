@@ -5,11 +5,9 @@ import { getAssociatedTokenAddress, getAccount } from "@solana/spl-token";
 // Initialize Solana connection (devnet)
 const connection = new Connection(clusterApiUrl("devnet"), "confirmed");
 
-// Your wallet that will receive payments
-const RECIPIENT_WALLET = new PublicKey("8A2C3qpv87bzA8m6EEefEKYww4G39XJwFrsrtVKVSSqR");
+const RECIPIENT_WALLET = new PublicKey(process.env.NEXT_PUBLIC_RECIPIENT_WALLET!);
 
-// USDC mint address on devnet
-const USDC_MINT_DEVNET = new PublicKey("4zMMC9srt5Ri5X14GAgXhaHii3GnPAEERYPJgZJDncDU");
+const USDC_MINT_DEVNET = new PublicKey(process.env.NEXT_PUBLIC_USDC_MINT_DEVNET!);
 
 // Payment amount: 1 USDC (6 decimals)
 const PAYMENT_AMOUNT = 1_000_000;
