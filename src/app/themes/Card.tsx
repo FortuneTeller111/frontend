@@ -1,3 +1,5 @@
+import Payment from "./Payment";
+
 const Card = ({
   title,
   desc,
@@ -43,28 +45,7 @@ const Card = ({
           )}
           <h2 className="text-white text-left text-md mb-2">{title}</h2>
           <p className="text-white text-left text-md mb-4">{desc}</p>
-          <div className="absolute bottom-6 left-6 right-6">
-            <button
-              className="w-full py-2 sm:py-3 text-white text-center relative transition-all duration-300 
-               hover:scale-[1.02] hover:shadow-[0_0_20px_rgba(198,166,103,0.65)]"
-              style={{
-                backgroundImage: "url('/images/stake-btn.svg')",
-                backgroundSize: "100% 100%",
-                backgroundRepeat: "no-repeat",
-                backgroundColor: "transparent",
-                border: "none",
-              }}
-            >
-              GET READINGS
-            </button>
-            <img
-              src="/images/img.svg"
-              width={118}
-              height={17}
-              alt="logo"
-              className="mx-auto mt-3"
-            />
-          </div>
+          <Payment />
         </div>
       </div>
     </div>
