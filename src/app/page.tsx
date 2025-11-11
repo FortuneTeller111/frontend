@@ -1,11 +1,15 @@
-import Image from "next/image";
+"use client";
+
 import Navbar from "./components/Navbar";
+import IntegratedWalletPayment from "./components/IntegratedWalletPayment";
 
 export default function Home() {
-
   return (
     <div>
-      <Navbar/>
+      <Navbar />
+      <div className="pt-30">
+        <IntegratedWalletPayment />
+      </div>
     </div>
   );
 }
