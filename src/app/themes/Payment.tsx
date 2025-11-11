@@ -9,6 +9,7 @@ import {
   getAccount,
 } from "@solana/spl-token";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 
 const RECIPIENT_WALLET = new PublicKey(
   process.env.NEXT_PUBLIC_RECIPIENT_WALLET!
@@ -20,11 +21,22 @@ const PAYMENT_AMOUNT = 1_000_000; // 1 USDC
 
 const Payment = () => {
   const { connection } = useConnection();
+  const router = useRouter();
   const { publicKey, signTransaction, connected } = useWallet();
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState<string>("");
   const [error, setError] = useState<string>("");
   const [txSignature, setTxSignature] = useState<string>("");
+
+
+  const storeTarotReading = (readingData: any) => {
+    try {
+      sessionStorage.setItem('tarotReading', JSON.stringify(readingData));
+      console.log('Tarot reading stored successfully');
+    } catch (error) {
+      console.error('Error storing tarot reading:', error);
+    }
+  };
 
   const handlePayAndGetMessage = async () => {
     if (!publicKey || !signTransaction) {
@@ -92,16 +104,18 @@ const Payment = () => {
       setTxSignature(signature);
 
       // Wait a bit for transaction to propagate
-      await new Promise((resolve) => setTimeout(resolve, 2000));
+      await new Promise((resolve) => setTimeout(resolve, 5000));
 
       // Now call the API with the payment proof
       const paymentHeader = `solana:${RECIPIENT_WALLET.toString()}:${USDC_MINT_DEVNET.toString()}:${PAYMENT_AMOUNT}:${signature}:devnet`;
 
       console.log("Calling API with payment header:", paymentHeader);
 
+      const wallet_address = publicKey?.toString()
+
       const response = await axios.post(
         "/api/paid-message",
-        {},
+        {address: wallet_address},
         {
           headers: {
             "X-402-Payment": paymentHeader,
@@ -111,8 +125,9 @@ const Payment = () => {
       );
 
       if (response.status === 200) {
-        console.log(response.data.message);
+        storeTarotReading(response.data);
         setLoading(false);
+        router.push("/reading");
       } else {
         throw new Error(response.data.message || "API call failed");
       }

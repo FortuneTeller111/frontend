@@ -1,6 +1,7 @@
 import { SolanaWalletProvider } from "@/config/solana";
 import "./globals.css";
 import localFont from "next/font/local";
+import ClearTarot from "@/components/ClearTarot";
 
 const grimReaper = localFont({
   src: "../../public/fonts/GrimReaper-jEBRO.ttf",
@@ -17,6 +18,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={grimReaper.variable}>
       <body className="">
+        <ClearTarot />
         <SolanaWalletProvider>{children}</SolanaWalletProvider>
       </body>
     </html>
