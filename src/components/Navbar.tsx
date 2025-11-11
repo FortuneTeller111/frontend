@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 import WalletConnect from "./WalletConnect";
 
 const Navbar = () => {
@@ -8,9 +9,9 @@ const Navbar = () => {
         <div className="flex flex-wrap items-center justify-between mx-auto px-12 pt-6 pb-4">
           <img src="/images/logo.png" className="w-[128px] h-[42px]"/>
           <div className="flex gap-x-6 text-2xl">
-            <a href="/" className="text-white">Home</a>
-            <a href="/staking" className="text-white">Stake</a>
-            <a href="/" className="text-white">Get Reading</a>
+            <Link href="/" className="text-white">Home</Link>
+            <Link href="/staking" className="text-white">Stake</Link>
+            <Link href="/reading" className="text-white">Get Reading</Link>
           </div>
           <div className="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
             <WalletConnect/>
