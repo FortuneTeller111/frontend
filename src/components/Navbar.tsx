@@ -7,7 +7,10 @@ const Navbar = () => {
     <div>
       <nav className="fixed w-full z-20 top-0 start-0">
         <div className="flex flex-wrap items-center justify-between mx-auto px-12 pt-6 pb-4">
-          <img src="/images/logo.png" className="w-[128px] h-[42px]"/>
+          <div className="inline-flex items-center gap-x-2">
+            <img src="/images/logo-icon.png" className="w-[39px] h-[42px]"/>
+            <p className="text-white text-2xl">Fortune Teller</p>
+          </div>
           <div className="flex gap-x-14 text-2xl">
             <Link href="/" className="text-white">Home</Link>
             <Link href="/staking" className="text-white">Stake</Link>
