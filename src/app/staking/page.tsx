@@ -1,10 +1,16 @@
 "use client";
 import { useState } from "react";
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 
-export default function Stake() {
+export default function Staking() {
   const [tab, setTab] = useState<"stake" | "unstake">("stake");
 
   return (
+    <main
+        className="min-h-screen w-full flex items-center justify-center px-4"
+      >
+        <Navbar />
     <div
       className="w-full max-w-md relative p-2"
       style={{
@@ -29,7 +35,7 @@ export default function Stake() {
             backgroundRepeat: "no-repeat",
           }}
         >
-          <h2 className="text-center text-2xl mb-6">TAROT CARD READER</h2>
+          <h2 className="text-white text-center text-2xl mb-6">TAROT CARD READER</h2>
 
           <div
             className="relative flex"
@@ -41,7 +47,7 @@ export default function Stake() {
             }}
           >
             <button
-              className={`flex-1 py-2 text-center ${
+              className={`text-white flex-1 py-2 text-center ${
                 tab === "stake" ? "bg-[#594819]" : "bg-[#251D08]"
               }`}
               onClick={() => setTab("stake")}
@@ -50,7 +56,7 @@ export default function Stake() {
             </button>
 
             <button
-              className={`flex-1 py-2 text-center ${
+              className={`text-white flex-1 py-2 text-center ${
                 tab === "unstake" ? "bg-[#594819]" : "bg-[#251D08]"
               }`}
               onClick={() => setTab("unstake")}
@@ -59,7 +65,7 @@ export default function Stake() {
             </button>
           </div>
 
-          <div className="mt-6">
+          <div className="text-white mt-6">
             <div className="flex justify-between text-sm mb-1">
               <span>{tab === "stake" ? "STAKE" : "UNSTAKE"}</span>
               <span>AVAILABLE BALANCE : 241</span>
@@ -122,5 +128,7 @@ export default function Stake() {
         </div>
       </div>
     </div>
+    <Footer />
+      </main>
   );
 }
