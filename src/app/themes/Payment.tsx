@@ -27,8 +27,6 @@ const Payment = () => {
   const [txSignature, setTxSignature] = useState<string>("");
 
   const handlePayAndGetMessage = async () => {
-    console.log("RECIPIENT_WALLET", process.env.NEXT_PUBLIC_RECIPIENT_WALLET)
-    console.log("USDC_MINT_DEVNET", process.env.NEXT_PUBLIC_USDC_MINT_DEVNET)
     if (!publicKey || !signTransaction) {
       setError("Please connect your wallet first");
       return;
@@ -51,10 +49,6 @@ const Payment = () => {
         RECIPIENT_WALLET
       );
 
-      console.log("recipientATA", recipientATA)
-      console.log("USDC_MINT_DEVNET", USDC_MINT_DEVNET)
-      console.log("RECIPIENT_WALLET", RECIPIENT_WALLET)
-
       // Check if sender has USDC
       try {
         const senderTokenAccount = await getAccount(connection, senderATA);
@@ -74,8 +68,6 @@ const Payment = () => {
         publicKey,
         PAYMENT_AMOUNT
       );
-
-      console.log("transferInstruction", transferInstruction)
 
       // Create and send transaction
       const { blockhash, lastValidBlockHeight } =
