@@ -12,7 +12,9 @@
 }
 
 body {
-  background: radial-gradient(50% 50% at 50% 50%, #2C022A 0%, #0B022C 100%);
+  background: 
+    linear-gradient(0deg, rgba(0, 0, 0, 0.38), rgba(0, 0, 0, 0.38)),
+    radial-gradient(ellipse 172.57% 93.08% at 100% -6.87%, #4D004A 0%, #0E0337 100%);
   min-height: 100vh;
   font-family: var(--font-custom);
 }

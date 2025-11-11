@@ -8,10 +8,10 @@ const Navbar = () => {
       <nav className="fixed w-full z-20 top-0 start-0">
         <div className="flex flex-wrap items-center justify-between mx-auto px-12 pt-6 pb-4">
           <img src="/images/logo.png" className="w-[128px] h-[42px]"/>
-          <div className="flex gap-x-6 text-2xl">
+          <div className="flex gap-x-14 text-2xl">
             <Link href="/" className="text-white">Home</Link>
             <Link href="/staking" className="text-white">Stake</Link>
-            <Link href="/reading" className="text-white">Get Reading</Link>
+            <Link href="/themes" className="text-white">Get Reading</Link>
           </div>
           <div className="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
             <WalletConnect/>
