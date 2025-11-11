@@ -1,6 +1,11 @@
 "use client";
 
-import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
+import dynamic from 'next/dynamic';
+
+const WalletMultiButtonDynamic = dynamic(
+  async () => (await import('@solana/wallet-adapter-react-ui')).WalletMultiButton,
+  { ssr: false }
+);
 
 const WalletConnect = () => {
   return (
@@ -10,7 +15,7 @@ const WalletConnect = () => {
         className="absolute inset-0 w-full h-full pointer-events-none"
         alt="wallet background"
       />
-      <WalletMultiButton 
+      <WalletMultiButtonDynamic 
         className="bg-[url(/images/wallet.png)]! border-none! w-[187px]! h-[57px]!"
         style={{
           width: '187px',
