@@ -1,6 +1,6 @@
+import { SolanaWalletProvider } from "@/config/solana";
 import "./globals.css";
 import localFont from "next/font/local";
-import { SolanaWalletProvider } from "./config/solana";
 
 const grimReaper = localFont({
   src: "../../public/fonts/GrimReaper-jEBRO.ttf",

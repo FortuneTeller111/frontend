@@ -1,7 +1,6 @@
-
-import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
-import IntegratedWalletPayment from "./components/IntegratedWalletPayment";
+import Footer from "@/components/Footer";
+import IntegratedWalletPayment from "@/components/IntegratedWalletPayment";
+import Navbar from "@/components/Navbar";
 
 export default function Home() {
   return (

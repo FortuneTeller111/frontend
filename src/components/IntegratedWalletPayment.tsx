@@ -115,6 +115,7 @@ function IntegratedWalletPayment() {
         throw new Error(response.data.message || "API call failed");
       }
     } catch (err: any) {
+        setLoading(false)
         console.error("Full error:", err);
         console.error("Error response:", err.response?.data);
         
