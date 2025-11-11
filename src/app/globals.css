@@ -1,8 +1,18 @@
 @import "tailwindcss";
 
 
+:root {
+  /* Use GrimReaper as the only font */
+  --font-custom: "GrimReaper";
+}
+
+@theme inline {
+  --font-sans: var(--font-custom);
+  --font-mono: var(--font-custom);
+}
+
 body {
   background: radial-gradient(50% 50% at 50% 50%, #2C022A 0%, #0B022C 100%);
   min-height: 100vh;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-custom);
 }

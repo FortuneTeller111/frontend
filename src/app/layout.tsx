@@ -1,7 +1,13 @@
-"use client";
-
-import { SolanaWalletProvider } from "./config/solana";
 import "./globals.css";
+import localFont from "next/font/local";
+import { SolanaWalletProvider } from "./config/solana";
+
+const grimReaper = localFont({
+  src: "../../public/fonts/GrimReaper-jEBRO.ttf",
+  variable: "--font-custom",
+  weight: "400",
+  display: "swap",
+});
 
 export default function RootLayout({
   children,
@@ -9,11 +15,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className={grimReaper.variable}>
       <body className="">
-        <SolanaWalletProvider>
-          {children}
-        </SolanaWalletProvider>
+        <SolanaWalletProvider>{children}</SolanaWalletProvider>
       </body>
     </html>
   );

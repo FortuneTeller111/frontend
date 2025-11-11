@@ -1,5 +1,4 @@
 "use client";
-
 import WalletConnect from "./WalletConnect";
 
 const Navbar = () => {
