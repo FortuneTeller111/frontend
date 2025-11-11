@@ -10,11 +10,9 @@ import {
 } from "@solana/spl-token";
 import axios from "axios";
 
-const RECIPIENT_WALLET = new PublicKey("8A2C3qpv87bzA8m6EEefEKYww4G39XJwFrsrtVKVSSqR");
+const RECIPIENT_WALLET = new PublicKey(process.env.NEXT_PUBLIC_RECIPIENT_WALLET!);
 
-const USDC_MINT_DEVNET = new PublicKey(
-  "4zMMC9srt5Ri5X14GAgXhaHii3GnPAEERYPJgZJDncDU"
-);
+const USDC_MINT_DEVNET = new PublicKey(process.env.NEXT_PUBLIC_USDC_MINT_DEVNET!);
 
 const PAYMENT_AMOUNT = 1_000_000; // 1 USDC
 
