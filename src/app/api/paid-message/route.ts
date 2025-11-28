@@ -18,30 +18,50 @@ const USDC_MINT_DEVNET = new PublicKey(
 const PAYMENT_AMOUNT = 1_000_000;
 
 const tarotMeanings: { [key: string]: string } = {
-  "The Fool": "New beginnings, spontaneity, freedom, adventure",
-  "The Magician": "Manifestation, resourcefulness, power, inspired action",
-  "The High Priestess":
-    "Intuition, sacred knowledge, divine feminine, subconscious",
-  "The Empress": "Femininity, beauty, nature, nurturing, abundance",
-  "The Emperor": "Authority, establishment, structure, father figure",
-  "The Hierophant":
-    "Spiritual wisdom, religious beliefs, conformity, tradition",
-  "The Lovers": "Love, harmony, relationships, values alignment, choices",
-  "The Chariot": "Control, willpower, success, action, determination",
-  Strength: "Strength, courage, persuasion, influence, compassion",
-  "The Hermit": "Soul searching, introspection, being alone, inner guidance",
-  "The Wheel of Fortune": "Cycles, change, fate, luck, turning point",
-  Justice: "Justice, fairness, truth, cause and effect, law",
-  "The Hanged Man": "Pause, surrender, letting go, new perspectives",
-  Death: "Endings, change, transformation, transition",
-  Temperance: "Balance, moderation, patience, purpose, meaning",
-  "The Devil": "Shadow self, attachment, addiction, restriction, sexuality",
-  "The Tower": "Sudden upheaval, revelation, awakening, broken pride",
-  "The Star": "Hope, faith, purpose, renewal, spirituality",
-  "The Moon": "Illusion, fear, anxiety, subconscious, intuition",
-  "The Sun": "Positivity, fun, warmth, success, vitality",
-  Judgement: "Reflection, reckoning, inner calling, absolution",
-  "The World": "Completion, accomplishment, travel, fulfillment",
+  the_noob:
+    "Fresh wallet energy, first transactions, learning the ropes, FOMO-driven decisions",
+  shadowy_supercoder:
+    "Anonymous builder, late-night deployments, mysterious smart contracts, hidden genius",
+  data_oracle:
+    "On-chain analytics master, pattern recognition, predictive insights, truth seeker",
+  community_builder:
+    "DAO leader, governance participation, social tokens, collective power",
+  protocol_architect:
+    "DeFi innovator, composability expert, system designer, foundational builder",
+  blockchain_educator:
+    "Knowledge sharer, onboarding guide, technical translator, mass adoption catalyst",
+  liquidity_provider:
+    "Market maker, yield optimizer, pool depth creator, passive income master",
+  gas_optimizer:
+    "Transaction efficiency expert, MEV awareness, timing precision, cost minimizer",
+  exploit_defender:
+    "White hat guardian, vulnerability hunter, protocol protector, security first",
+  privacy_seeker:
+    "Zero-knowledge advocate, mixer user, anonymous transactions, sovereignty defender",
+  flash_loaner:
+    "Arbitrage master, instant capital deployer, opportunity seizer, risk calculator",
+  smart_contract_auditor:
+    "Code reviewer, bug finder, security enforcer, trust builder",
+  yield_farmer:
+    "APY hunter, protocol hopper, reward harvester, compound interest maximizer",
+  asset_burner:
+    "Deflationary force, supply reducer, value concentrator, diamond hands",
+  cross_chain_bridger:
+    "Multichain navigator, interoperability pioneer, liquidity mover, network connector",
+  rug_puller:
+    "Dark force warning, trust breaker, cautionary tale, risk reminder",
+  crisis_manager:
+    "Bear market survivor, liquidation avoider, risk mitigator, calm in chaos",
+  gitcoin_grant_recipient:
+    "Public goods builder, community funded, impact creator, ecosystem contributor",
+  meme_coin_trader:
+    "Cultural capital rider, community coin flipper, viral trend catcher, high risk tolerance",
+  defi_billionaire:
+    "Whale status, market mover, protocol governor, generational wealth",
+  fed_chair:
+    "Monetary policy influencer, market sentiment driver, macro perspective, traditional bridge",
+  chain_traveller:
+    "Multi-network explorer, gas fee optimizer, bridge expert, ecosystem diversifier",
 };
 
 // Parse payment header manually
@@ -417,9 +437,9 @@ export async function POST(req: NextRequest) {
         .map((card) => `- ${card}: ${tarotMeanings[card]}`)
         .join("\n");
 
-      const prompt = `You are a mystical fortune teller who reads the blockchain like ancient cards.
+      const prompt = `You are a mystical Web3 fortune teller who reads the blockchain like ancient cards.
 
-The following tarot cards have been drawn:
+The following Web3 tarot cards have been drawn:
 ${cards.map((card) => `- ${card}`).join("\n")}
 
 Card meanings:
@@ -428,7 +448,7 @@ ${cardMeaningsText}
 Wallet analysis:
 ${walletSummary}
 
-Create a mystical, poetic message (2-3 sentences) that weaves together the tarot symbolism with the wallet's financial patterns. Use metaphors related to magic, light, energy, and cosmic forces. The message should feel personal and insightful, connecting the cards' meanings to the wallet's behavior. Do not mention the cards by name in the message, only weave their symbolism into the narrative.`;
+Create a mystical, poetic message (2-3 sentences) that weaves together the Web3 card symbolism with the wallet's on-chain patterns. Use metaphors related to smart contracts, gas fees, MEV, liquidity pools, and blockchain consensus. The message should feel personal and insightful, connecting the cards' meanings to the wallet's behavior. Do not mention the cards by name in the message, only weave their symbolism into the narrative.`;
 
       try {
         const completion = await openai.chat.completions.create({
@@ -440,11 +460,12 @@ Create a mystical, poetic message (2-3 sentences) that weaves together the tarot
 
         return (
           completion.choices[0]?.message?.content?.trim() ||
-          "The cosmic forces are aligned, but their message remains veiled in mystery."
+          "Your wallet whispers of untold potential, a fresh genesis block awaiting its first transaction. The blockchain paths before you shimmer with possibility, each gas fee a stepping stone toward your destiny in the decentralized realm."
         );
       } catch (error) {
         console.error("Error generating fortune:", error);
-        return "The stars whisper secrets your wallet holds, a dance between caution and courage unfolds. Trust the rhythm of your journey, for wisdom blooms where patience and action meet.";
+        // Updated fallback message for Web3 theme
+        return "Your wallet whispers of untold potential, a fresh genesis block awaiting its first transaction. The blockchain paths before you shimmer with possibility, each gas fee a stepping stone toward your destiny in the decentralized realm.";
       }
     }
 
@@ -487,15 +508,20 @@ Create a mystical, poetic message (2-3 sentences) that weaves together the tarot
       error instanceof Error ? error.stack : "No stack"
     );
 
+    // Updated fallback response for API failures
     return NextResponse.json(
       {
-        error: "Internal server error",
-        message: error instanceof Error ? error.message : "Unknown error",
-        details:
-          process.env.NODE_ENV === "development" ? String(error) : undefined,
+        cards: ["the_noob"],
+        message:
+          "Your wallet whispers of untold potential, a fresh genesis block awaiting its first transaction. The blockchain paths before you shimmer with possibility, each gas fee a stepping stone toward your destiny in the decentralized realm.",
+        error: "Service temporarily unavailable",
+        fallback: true,
       },
       {
-        status: 500,
+        status: 200, // Return 200 with fallback data instead of 500
+        headers: {
+          "Content-Type": "application/json",
+        },
       }
     );
   }

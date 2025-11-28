@@ -5,17 +5,28 @@ import Navbar from "@/components/Navbar";
 import { useWallet } from "@solana/wallet-adapter-react";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import { PinataSDK } from "pinata";
+import { TAROT_CARDS } from "@/lib/Cards";
 
-const CardImage: any = {
-  "The Star": "/images/star.png",
-  "The Moon": "/images/moon.png",
-  "The Sun": "/images/flower.png",
-};
+const PINATA_JWT = process.env.NEXT_PUBLIC_PINATA_JWT;
+const PINATA_GATEWAY = process.env.NEXT_PUBLIC_PINATA_GATEWAY;
+
+const pinata = new PinataSDK({
+  pinataJwt: PINATA_JWT,
+  pinataGateway: PINATA_GATEWAY,
+});
 
 const Reading = () => {
   const wallet = useWallet();
   const [readingData, SetReadingData] = useState<any>();
   const [showCard, setShowCard] = useState(false);
+  const [cardLinks, setCardLinks] = useState<
+    Array<{
+      card_name: string;
+      cid: string;
+      url: string;
+    }>
+  >([]);
   const router = useRouter();
 
   const getTarotReading = () => {
@@ -35,11 +46,41 @@ const Reading = () => {
     const reading = getTarotReading();
     if (reading) {
       SetReadingData(reading);
+      fetchPrivateFile(reading);
     } else {
       router.push("/themes");
     }
   }, [wallet]);
 
+  const fetchPrivateFile = async (reading: any) => {
+    const groupData = await pinata.groups.private.list();
+    const CardCID: any = await pinata.files.private
+      .list()
+      .group(groupData.groups[0].id)
+      .limit(30);
+
+    const filteredCards = CardCID.files
+      .filter((card: any) => reading.cards.includes(card.name))
+      .map((card: any) => ({
+        card_name: card.name,
+        cid: card.cid,
+      }));
+    const cardsWithLinks = await Promise.all(
+      filteredCards.map(async (card: any) => {
+        const url = await pinata.gateways.private.createAccessLink({
+          cid: card.cid,
+          expires: 1800,
+        });
+
+        return {
+          card_name: card.card_name,
+          cid: card.cid,
+          url: url,
+        };
+      })
+    );
+    setCardLinks(cardsWithLinks);
+  };
   const InitalCard = () => {
     return (
       <>
@@ -57,10 +98,12 @@ const Reading = () => {
       <>
         {readingData && (
           <div className="w-full inline-flex justify-center">
-            {readingData.cards.map((data: string, index: number) => (
+            {cardLinks.map((data: any, index: number) => (
               <div key={index} className="flex flex-col items-center mx-10">
-                <img src={CardImage[data]} className="w-[214px] h-[341px]" />
-                <p className="text-white mt-2 pt-4 text-xl">{data}</p>
+                <img src={data.url} className="w-[214px] h-[341px]" />
+                <p className="text-white mt-2 pt-4 text-xl">
+                  {TAROT_CARDS[data.card_name]}
+                </p>
               </div>
             ))}
           </div>

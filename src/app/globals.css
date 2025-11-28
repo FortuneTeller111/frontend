@@ -12,9 +12,18 @@
 }
 
 body {
-  background: 
-    linear-gradient(0deg, rgba(0, 0, 0, 0.38), rgba(0, 0, 0, 0.38)),
-    radial-gradient(ellipse 172.57% 93.08% at 100% -6.87%, #4D004A 0%, #0E0337 100%);
+  background: radial-gradient(93.08% 172.57% at 100% -6.87%, #4D004A 0%, #0E0337 100%),
+    linear-gradient(0deg, rgba(0, 0, 0, 0.38), rgba(0, 0, 0, 0.38));
   min-height: 100vh;
   font-family: var(--font-custom);
 }
+
+.wallet-adapter-modal-wrapper {
+  background: rgba(9, 3, 33, 1);
+}
+
+.wallet-adapter-dropdown-list {
+  background: rgba(9, 3, 33, 1);
+} 
+
+
