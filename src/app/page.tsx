@@ -34,7 +34,13 @@ export default function Home() {
             </div>
           </div>
           <div>
-            <img src="/images/Chakra.png" className="w-[524px] h-[532px]" />
+            <img
+              src="/images/Chakra.png"
+              className="w-[524px] h-[532px]"
+              style={{
+                animation: "spin 25s linear infinite",
+              }}
+            />
           </div>
         </div>
         <Footer />

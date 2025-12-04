@@ -92,6 +92,7 @@ const Reading = () => {
       </>
     );
   };
+  const [imageLoaded, setImageLoaded] = useState(false);
 
   const RevealedCard = () => {
     return (
@@ -100,10 +101,22 @@ const Reading = () => {
           <div className="w-full inline-flex justify-center">
             {cardLinks.map((data: any, index: number) => (
               <div key={index} className="flex flex-col items-center mx-10">
-                <img src={data.url} className="w-[214px] h-[341px]" />
-                <p className="text-white mt-2 pt-4 text-xl">
-                  {TAROT_CARDS[data.card_name]}
-                </p>
+                <div className="flex flex-col items-center mx-10">
+                  {!imageLoaded && (
+                    <div className="w-[214px] h-[341px] bg-gray-200 animate-pulse" />
+                  )}
+                  <img
+                    className={`w-[214px] h-[341px] ${
+                      !imageLoaded ? "hidden" : ""
+                    }`}
+                    src={data.url}
+                    onLoad={() => setImageLoaded(true)}
+                    alt="Meme Coin Trader"
+                  />
+                  <p className="text-white mt-2 pt-4 text-xl">
+                    {TAROT_CARDS[data.card_name]}
+                  </p>
+                </div>
               </div>
             ))}
           </div>
@@ -123,10 +136,6 @@ const Reading = () => {
     <main className="min-h-screen w-full flex items-center justify-center px-4">
       <Navbar />
       <div className="pt-24">
-        <div className="w-full text-center pb-6">
-          <p className="text-[#E3C679] text-4xl">Reveal your cards</p>
-        </div>
-
         {showCard ? <RevealedCard /> : <InitalCard />}
 
         {!showCard && (

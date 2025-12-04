@@ -146,14 +146,14 @@ const Payment = () => {
   };
 
   return (
-    <div className="absolute bottom-6 left-6 right-6">
+    <div className="">
       <button
         onClick={handlePayAndGetMessage}
         disabled={!connected || loading}
-        className="w-full cursor-pointer py-2 sm:py-3 text-white text-center relative transition-all duration-300 
+        className="w-[277px] h-[38px] cursor-pointer text-white text-center relative transition-all duration-300 
                hover:scale-[1.02] hover:shadow-[0_0_20px_rgba(198,166,103,0.65)]"
         style={{
-          backgroundImage: "url('/images/stake-btn.svg')",
+          backgroundImage: "url('/images/card-button.svg')",
           backgroundSize: "100% 100%",
           backgroundRepeat: "no-repeat",
           backgroundColor: "transparent",
@@ -167,13 +167,6 @@ const Payment = () => {
               ? "Connect Wallet First"
               : "GET READINGS"}
       </button>
-      <img
-        src="/images/img.svg"
-        width={118}
-        height={17}
-        alt="logo"
-        className="mx-auto mt-3"
-      />
     </div>
   );
 };
