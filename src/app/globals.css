@@ -1,35 +1,14 @@
 @import "tailwindcss";
 
-
-:root {
-  /* Use GrimReaper as the only font */
-  --font-custom: "GrimReaper";
-}
-
-@theme inline {
-  --font-sans: var(--font-custom);
-  --font-mono: var(--font-custom);
-}
-
 body {
-  background: radial-gradient(93.08% 172.57% at 100% -6.87%, #4D004A 0%, #0E0337 100%),
-    linear-gradient(0deg, rgba(0, 0, 0, 0.38), rgba(0, 0, 0, 0.38));
-  min-height: 100vh;
-  font-family: var(--font-custom);
+  background: rgba(0, 0, 0, 1);
 }
 
-.wallet-adapter-modal-wrapper {
-  background: rgba(9, 3, 33, 1);
+.main-bg {
+  background: radial-gradient(80.04% 128.06% at 50% 0%, rgba(62, 224, 207, 0.45) 0%, rgba(62, 224, 207, 0) 50%);
 }
-
-.wallet-adapter-dropdown-list {
-  background: rgba(9, 3, 33, 1);
-} 
 
 @theme {
-  --color-fortune-blue: #090321;
-  --color-fortune-purple: #400D50;
-  --color-fortune-yellow: #E3C679;
+  --color-fortune-green: rgba(0, 211, 149, 1);
+;
 }
-
-
