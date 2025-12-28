@@ -1,10 +1,11 @@
 "use client";
 
-import React, { useState } from 'react';
+import Navbar from "@/components/Navbar";
+import React, { useState } from "react";
 
 const Staking: React.FC = () => {
-  const [activeTab, setActiveTab] = useState<'stake' | 'unstake'>('stake');
-  const [amount, setAmount] = useState<string>('0.00');
+  const [activeTab, setActiveTab] = useState<"stake" | "unstake">("stake");
+  const [amount, setAmount] = useState<string>("0.00");
   const balance = 10000;
 
   const calculateReceive = (value: string): string => {
@@ -18,27 +19,17 @@ const Staking: React.FC = () => {
 
   const handleAmountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
-    if (value === '' || /^\d*\.?\d*$/.test(value)) {
+    if (value === "" || /^\d*\.?\d*$/.test(value)) {
       setAmount(value);
     }
   };
 
   return (
     <div className="min-h-screen main-bg">
-      {/* Header */}
-      <header className="flex items-center justify-between px-8 py-6">
-        <div className="flex items-center gap-3">
-          <img src="/images/logo.svg"/>
-        </div>
-        <button className="bg-emerald-400 hover:bg-emerald-500 text-gray-900 font-semibold px-6 py-3 rounded-lg transition-colors">
-          Connect Wallet
-        </button>
-      </header>
-
-      {/* Main Content */}
+      <Navbar />
       <main className="flex flex-col items-center justify-center px-4 py-16">
         <h1 className="text-5xl md:text-6xl font-bold mb-4 text-center">
-          <span className="text-teal-400">Stake</span>{' '}
+          <span className="text-teal-400">Stake</span>{" "}
           <span className="text-white">$Fortune Token</span>
         </h1>
         <p className="text-gray-400 text-lg mb-12 text-center">
@@ -50,21 +41,21 @@ const Staking: React.FC = () => {
           {/* Tab Buttons */}
           <div className="flex gap-3 mb-6">
             <button
-              onClick={() => setActiveTab('stake')}
+              onClick={() => setActiveTab("stake")}
               className={`flex-1 py-3 px-4 rounded-lg font-semibold transition-colors ${
-                activeTab === 'stake'
-                  ? 'bg-emerald-400 text-gray-900'
-                  : 'bg-gray-800 text-gray-400 hover:bg-gray-750'
+                activeTab === "stake"
+                  ? "bg-emerald-400 text-gray-900"
+                  : "bg-gray-800 text-gray-400 hover:bg-gray-750"
               }`}
             >
               Stake
             </button>
             <button
-              onClick={() => setActiveTab('unstake')}
+              onClick={() => setActiveTab("unstake")}
               className={`flex-1 py-3 px-4 rounded-lg font-semibold transition-colors ${
-                activeTab === 'unstake'
-                  ? 'bg-emerald-400 text-gray-900'
-                  : 'bg-gray-800 text-gray-400 hover:bg-gray-750'
+                activeTab === "unstake"
+                  ? "bg-emerald-400 text-gray-900"
+                  : "bg-gray-800 text-gray-400 hover:bg-gray-750"
               }`}
             >
               Unstake
@@ -139,13 +130,22 @@ const Staking: React.FC = () => {
       {/* Footer */}
       <footer className="fixed bottom-0 left-0 right-0 px-8 py-6 flex justify-between items-center">
         <div className="flex gap-6">
-          <a href="#" className="text-gray-400 hover:text-white transition-colors">
+          <a
+            href="#"
+            className="text-gray-400 hover:text-white transition-colors"
+          >
             Gitbook
           </a>
-          <a href="#" className="text-gray-400 hover:text-white transition-colors">
+          <a
+            href="#"
+            className="text-gray-400 hover:text-white transition-colors"
+          >
             Github
           </a>
-          <a href="#" className="text-gray-400 hover:text-white transition-colors">
+          <a
+            href="#"
+            className="text-gray-400 hover:text-white transition-colors"
+          >
             Tutorials
           </a>
         </div>

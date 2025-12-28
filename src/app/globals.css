@@ -10,5 +10,7 @@ body {
 
 @theme {
   --color-fortune-green: rgba(0, 211, 149, 1);
+  --color-fortune-black: rgba(5, 5, 5, 1);
+
 ;
 }
