@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import Providers from "@/provider/Provider";
+import "@rainbow-me/rainbowkit/styles.css";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -11,12 +13,13 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
   return (
     <html lang="en">
-      <body
-        className=""
-      >
-        {children}
+      <body className="">
+        <Providers>
+          {children}
+        </Providers>
       </body>
     </html>
   );

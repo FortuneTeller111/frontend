@@ -3,10 +3,11 @@
 import { useState } from "react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
+import WalletConnect from "./WalletConnect";
 
 const NAV_MENU = [
-  { name: "Staking", href: "/staking", current: true },
-  { name: "Dashboard", href: "/", current: false },
+  { name: "Staking", href: "/", current: true },
+  { name: "Dashboard", href: "/dashboard", current: false },
 ];
 
 function classNames(...classes: string[]) {
@@ -42,9 +43,10 @@ const Navbar = () => {
               </Link>
             ))}
           </div>
-          <button className="bg-fortune-green hover:bg-fortune-green/60 text-fortune-black text-base font-medium px-6 py-3 rounded-lg">
+          <WalletConnect/>
+          {/* <button className="bg-fortune-green hover:bg-fortune-green/60 text-fortune-black text-base font-medium px-6 py-3 rounded-lg">
             Connect Wallet
-          </button>
+          </button> */}
 
           <button
             type="button"
